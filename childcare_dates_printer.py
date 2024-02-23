@@ -17,7 +17,9 @@ def read_assignment_file(file_name: str) -> list:
     with open(file_name, "r") as f:
         reader = DictReader(f)
         for row in reader:
-            assignments.append((row["date"], row["AM_PM"], row["helper"]))
+            assignments.append(
+                (row["date"], row["day"], row["AM_PM"], row["helper"])
+            )
 
     return assignments
 
@@ -33,7 +35,7 @@ def print_assignments(assignments: list) -> bool:
         bool: True if successful
     """
 
-    headers = ["date", "AM/PM", "helper"]
+    headers = ["date", "day", "AM/PM", "helper"]
     print(tabulate(assignments, headers=headers))
 
     return True
